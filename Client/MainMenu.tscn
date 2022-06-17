@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerList" type="VBoxContainer" parent="."]
+margin_left = 138.239
+margin_top = 12.0208
+margin_right = 377.239
+margin_bottom = 143.021
+
+[node name="PlayButton" type="Button" parent="."]
+visible = false
+margin_left = 252.614
+margin_top = 258.284
+margin_right = 512.614
+margin_bottom = 278.284
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="PlayButton" to="." method="_on_PlayButton_button_down"]
