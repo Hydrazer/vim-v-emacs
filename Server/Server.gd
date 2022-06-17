@@ -147,8 +147,12 @@ func delete_child(node, child):
 			node.remove_child(c)
 			c.queue_free()
 
-remote func rpc_test(player_id):
+remote func rpc_test(player_id, old_player_id, room_id):
 	print("hello from ", player_id)
+	for p in player_list(room_id):
+		if player_id != p:
+			rpc(p, "kill_old_player", old_player_id)
+			
 #
 remote func start_game(room_id):
 	print("started game?")

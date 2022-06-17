@@ -36,3 +36,9 @@ func display_player():
 
 func _on_PlayButton_button_down():
 	Server.serv_start_game(Glob.ROOM_ID)
+
+func disconnecter():
+	
+	$DisconnectLabel.show()
+	$PlayButton.hide()
+	$PlayerList.hide()

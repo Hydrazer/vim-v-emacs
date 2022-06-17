@@ -23,14 +23,23 @@ func _ready():
 
 func _on_connection_failed():
 	# try connecting again
-	print("connection failed, i will try again")
+#	Glob.PLAYER_DICT.erase(Glob.PLAYER_ID)
+	print("connection failed, please restart the game")
+	call_deferred("_deferred_change_scene", 'res://MainMenu.tscn')
 	yield(get_tree().create_timer(0.5), "timeout")
-	connect_to_server()
+	get_node("/root/MainMenu").disconnecter()
+#	yield(get_tree().create_timer(0.5), "timeout")
+#	get_nod
+#	connect_to_server()
 
 
 func _on_connection_succeeded():
 	print("connection suceed :)")
-	rpc_id(1, "rpc_test", get_tree().get_network_unique_id())
+	Glob.PLAYER_DICT.erase(Glob.PLAYER_ID)
+	rpc_id(1, "rpc_kill_old", get_tree().get_network_unique_id(), Glob.PLAYER_ID)
+	
+remote func kill_old_player(old_player_id):
+	Glob.PLAYER_DICT.erase(Glob.PLAYER_ID)
 
 func connect_to_server():
 	network.connect_to_url(server_url, PoolStringArray(), true);

@@ -18,7 +18,7 @@ func _ready():
 
 
 func turn_npc(npc_name, angle, wait_time):
-	print("turning npc", npc_name, " || ", self.name, " || ", angle, " || ", wait_time)
+#	print("turning npc", npc_name, " || ", self.name, " || ", angle, " || ", wait_time)
 	if self.name == npc_name:
 		MOVE_TIMER.wait_time = wait_time
 		MOVE_TIMER.start()
