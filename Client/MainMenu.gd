@@ -20,6 +20,10 @@ func _process(delta):
 #	pass
 	
 	display_player()
+#	print($Timer.time_left)	
+	if $Timer.is_stopped():
+		$Timer.start()
+		keep_server_running()
 
 func delete_children(node):
 	for n in node.get_children():
@@ -31,8 +35,11 @@ func display_player():
 	for p in Glob.PLAYER_DICT:
 		var label = Label.new()
 		$PlayerList.add_child(label)
+		label.add_color_override("font_color", Color(1,0,0))
 		label.text = p as String
 
+func keep_server_running():
+	Server.serv_spin_man(Glob.ROOM_ID)
 
 func _on_PlayButton_button_down():
 	Server.serv_start_game(Glob.ROOM_ID)

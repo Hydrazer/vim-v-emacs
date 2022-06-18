@@ -126,6 +126,14 @@ remote func in_game_dc(player_alive_id):
 	
 #	var player_list = player_list(PLAYER_DICT[player_id])
 
+remote func spin_man(deg, room_id):
+#	print('werkjllwerj')
+#	var room = find_room(room_id)
+	for pid in player_list(room_id):
+#		if pid != player_id:
+		rpc_id(pid, "spin_man", deg)
+	
+
 remote func peer_change_room_dc(player_id):
 	var room = find_room(PLAYER_DICT[player_id])
 #	if room.get_children().size() != 0:

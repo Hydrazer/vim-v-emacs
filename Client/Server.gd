@@ -1,6 +1,6 @@
 extends Node
 
-const IP_ADDRESS = "thisissodumb.herokuapp.com"
+const IP_ADDRESS = "pee-aitch-pee.herokuapp.com"
 const PORT = 443
 var server_url = "wss://%s:%d/ws/" % [IP_ADDRESS, PORT]
 
@@ -21,6 +21,15 @@ func _ready():
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
 	connect_to_server()
 
+
+func serv_spin_man(room_id):
+#	print("haehwhrh")
+	rpc_id(1, "spin_man", Glob.RNG.randi_range(-180, 180), room_id)
+
+remote func spin_man(deg):
+	print('spinning man')
+	get_node("/root/MainMenu/HBoxContainer/Sprite").set_rotation_degrees(deg)
+		
 func _on_connection_failed():
 	# try connecting again
 #	Glob.PLAYER_DICT.erase(Glob.PLAYER_ID)
